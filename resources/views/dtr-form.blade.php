@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 </head>
 <body>
-    <form class="g-3 m-3" method="GET" action="{{ route('test-time-diff') }}">
+    <form class="g-3 m-3" method="GET">
         @csrf
         <div class="row">
             <div class="col-md-6">

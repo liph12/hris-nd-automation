@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\APIController;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DateTime;
 
-class DailyTimeRecordController extends APIController
+class DailyTimeRecordController extends Controller
 {
     public function formatSchedule($startTime, $endTime) {
         // Convert start and end times to DateTime objects
@@ -74,7 +74,7 @@ class DailyTimeRecordController extends APIController
         return $this->getTimeDiff($timeOut, $startNdTime)['nightDiff'];
     }
 
-    public function calculateEmployeeTimeDIff(Request $request)
+    public function process(Request $request)
     {
         $baseDate = $request->scheduledDate;
         $schedTimeStart = $this->getProperTimeFormat($request->scheduledTimeStart);
@@ -261,9 +261,9 @@ class DailyTimeRecordController extends APIController
             'ND_OT' => $this->getNDOT($dtr, $dateTimeSched, $dateTimeDtr)."hr(s)"
         ];
 
-        return $dtrResults;
+        // return $dtrResults;
 
-        // return view('dtr-form', compact('dtrResults'));    
+        return view('dtr-form', compact('dtrResults'));    
     }
 
     protected function getNDOT($dtr, $sched, $dateTimeDtr)
